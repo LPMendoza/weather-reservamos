@@ -1,0 +1,119 @@
+@import 'variables';
+body {
+  background-color: #f7f7f7;
+}
+
+.city-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 10px;
+
+  &__name {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  &__days-container {
+    display: flex;
+    margin: 32px 0px 0px 0px;
+    flex-wrap: wrap;
+  }
+
+  .day-container {
+    display: flex;
+    margin: 0px 16px 16px 0px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 8px 16px;
+    border-radius: 10px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &__name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+
+    }
+  }
+}
+
+.btn-primary {
+  background-color: $accent-color;
+  border-color: $accent-color;
+
+  &:hover, &:active {
+    background-color: $accent-hover-color;
+    border-color: $accent-color;
+  }
+
+  &:active {
+    box-shadow: $input-outline !important;
+  }
+
+  &:focus {
+    box-shadow: $input-outline;
+    background-color: $accent-color;
+    border-color: $accent-color;
+  }
+}
+
+.form-control {
+  &:focus {
+    box-shadow: $input-outline;
+    border-color: $accent-color;
+  }
+}
+
+.city-container {
+  position: relative;
+}
+
+.loader-container {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &__spinner {
+    width: 64px;
+    height: 64px;
+    border: 4px solid transparent;
+    border-top: 4px solid rgb(160, 160, 160);
+    border-radius: 50%;
+    animation: spinner .5s ease-in-out infinite;
+  }
+}
+
+.form-search {
+  position: relative;
+}
+.input-search {
+  position: relative;
+  padding-left: 32px;
+
+  &:valid + .search-location-icon {
+    color: $accent-color;
+  }
+}
+.search-location-icon{
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
