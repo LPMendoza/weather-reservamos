@@ -13,10 +13,10 @@ const WeatherContainer = () => {
     return cityText.toLowerCase().split(" ").join("-");
   }
 
-  const handleSearchCity = async (cityText) => {
+  const handleSearchCity = async (cityText, cityId) => {
     setLoading(true);
     try {
-      let city = await getCity(formatText(cityText));
+      let city = await getCity(formatText(cityText), cityId);
       city["weather"] = await searchWeather(city.lat, city.long);
       setCity(city);
       setError(null);
