@@ -9,32 +9,47 @@ const CityCard = ({city}) => {
   const printDays = () => {
     let currentDay = (new Date()).getDay();
     let dayCards = [];
-
+    const maxRainIndex = getMaxRain(weather);
+    console.log(maxRainIndex);
     dayCards.push(
       <DayWeather
         key={currentDay}
         name={"Today"}
-        min={weather[currentDay].temp.min}
-        max={weather[currentDay].temp.max}
+        min={weather[0].temp.min}
+        max={weather[0].temp.max}
+        rainMax={0 === maxRainIndex}
       />
     );
     currentDay++;
 
-    for(var i = 0; i < 6; i++) {
+    for(var i = 1; i <= 7; i++) {
       if(currentDay > 6) 
       currentDay = 0;
       dayCards.push(
         <DayWeather
           key={currentDay}
           name={days[currentDay]}
-          min={weather[currentDay].temp.min}
-          max={weather[currentDay].temp.max}
+          min={weather[i].temp.min}
+          max={weather[i].temp.max}
+          rainMax={i === maxRainIndex}
         />
       );
       currentDay++;
     }
 
     return dayCards;
+  }
+
+  const getMaxRain = (weather) => {
+    let indexMax = 0;
+    let aux = 0; 
+    weather.forEach((day, index) => {
+      if(day.humidity > aux) {
+        indexMax = index;
+        aux = day.humidity;
+      }
+    });
+    return indexMax;
   }
   
   return (
